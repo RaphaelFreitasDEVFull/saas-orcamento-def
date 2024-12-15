@@ -8,7 +8,7 @@ import { useActionState } from 'react';
 import { addClient } from '../addClientAction';
 
 const AddClientForm = () => {
-  const [state, formAction, isPending] = useActionState(addClient, null);
+  const [, formAction, isPending] = useActionState(addClient, null);
 
   return (
     <div>
@@ -77,6 +77,7 @@ const AddClientForm = () => {
         <Button
           type="submit"
           className="w-fit self-end mt-4 bg-blue-500 hover:bg-blue-600"
+          disabled={isPending}
         >
           Adicionar Cliente
         </Button>

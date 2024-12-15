@@ -30,7 +30,7 @@ type QuoteItem = {
 
 export default function AddQuoteForm({ clients, items }: AddQuoteFormProps) {
   const [quoteItems, setQuoteItems] = useState<QuoteItem[]>([]);
-  const [state, formAction, isPending] = useActionState(addQuote, null);
+  const [, formAction, isPending] = useActionState(addQuote, null);
 
   const calculateTotal = () => {
     return quoteItems.reduce((total, item) => {
@@ -52,7 +52,11 @@ export default function AddQuoteForm({ clients, items }: AddQuoteFormProps) {
     setQuoteItems(quoteItems.filter((item) => item.id !== id));
   };
 
-  const updateQuoteItem = (id: string, field: keyof QuoteItem, value: any) => {
+  const updateQuoteItem = (
+    id: string,
+    field: keyof QuoteItem,
+    value: number
+  ) => {
     setQuoteItems(
       quoteItems.map((item) => {
         if (item.id === id) {

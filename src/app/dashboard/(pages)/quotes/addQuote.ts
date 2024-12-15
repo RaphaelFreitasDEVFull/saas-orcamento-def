@@ -10,7 +10,7 @@ interface QuoteItem {
   unitPrice: number;
 }
 
-export async function addQuote(_prevState: any, formData: FormData) {
+export async function addQuote(_prevState: unknown, formData: FormData) {
   const session = await auth();
 
   try {
@@ -57,7 +57,7 @@ export async function addQuote(_prevState: any, formData: FormData) {
     }
 
     // Validate each item
-    parsedItems.forEach((item: any) => {
+    parsedItems.forEach((item: QuoteItem) => {
       if (!item.itemId) {
         throw new Error('Selecione um item válido');
       }
@@ -73,7 +73,7 @@ export async function addQuote(_prevState: any, formData: FormData) {
       return sum + item.quantity * item.unitPrice;
     }, 0);
 
-    const quote = await db.quote.create({
+    await db.quote.create({
       data: {
         title,
         status,

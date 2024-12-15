@@ -8,7 +8,7 @@ import Form from 'next/form';
 import { loginDash } from './formActions';
 
 const FormLogin = () => {
-  const [state, formAction, isLoading] = useActionState(loginDash, null);
+  const [, formAction, isLoading] = useActionState(loginDash, null);
 
   return (
     <>
@@ -31,7 +31,7 @@ const FormLogin = () => {
             name="password"
           />
         </div>
-        <Button type="submit" className="w-full mt-3">
+        <Button type="submit" className="w-full mt-3" disabled={isLoading}>
           Entrar
         </Button>
       </Form>

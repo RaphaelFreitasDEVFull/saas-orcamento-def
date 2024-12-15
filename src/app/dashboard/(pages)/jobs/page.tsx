@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { auth } from '../../../../../auth';
-import { PencilIcon, PlusIcon, TrashIcon } from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Table,

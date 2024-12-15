@@ -3,7 +3,7 @@
 import { db } from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 
-export const addRole = async (_prevState: any, formData: FormData) => {
+export const addRole = async (_prevState: unknown, formData: FormData) => {
   try {
     // Validação dos dados
     const roleName = formData.get('roleName');
@@ -24,14 +24,16 @@ export const addRole = async (_prevState: any, formData: FormData) => {
     }
 
     //cria o cargo
-    const newRole = await db.role.create({
+    await db.role.create({
       data: {
         roleName: roleName as string,
       },
     });
 
     redirect('/dashboard/jobs');
-  } catch (error: any) {
-    return { error: error.message };
+  } catch (error: unknown) {
+    return {
+      error: error instanceof Error ? error.message : 'Erro desconhecido',
+    };
   }
 };

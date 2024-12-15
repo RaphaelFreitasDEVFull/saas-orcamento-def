@@ -7,7 +7,7 @@ import { addItem } from './addItemAction';
 import { Button } from '@/components/ui/button';
 
 export default function AddItemForm() {
-  const [state, formAction, isPending] = useActionState(addItem, null);
+  const [, formAction, isPending] = useActionState(addItem, null);
 
   return (
     <div>

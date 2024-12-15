@@ -8,7 +8,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { db } from '@/lib/prisma';
-import { EyeIcon, PencilIcon } from 'lucide-react';
+import { EyeIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export default async function QuotesListPage() {

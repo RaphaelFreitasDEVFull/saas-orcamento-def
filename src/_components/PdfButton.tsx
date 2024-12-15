@@ -1,7 +1,7 @@
 // src/components/PdfButton.tsx
 'use client';
 import { Button } from '@/components/ui/button';
-// @ts-ignore
+// @ts-expect-error
 import html2pdf from 'html2pdf.js';
 
 export function PdfButton() {
