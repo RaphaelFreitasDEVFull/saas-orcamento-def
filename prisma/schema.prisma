@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  userName String @unique
+  name     String
+  password String
+  role     Role   @relation(fields: [roleId], references: [id])
+  roleId   Int
+  createdAt   DateTime @default(now())
+  clients     Client[]
+  quotes      Quote[]
+  items       Item[]
+  templates   Template[]
+}
+
+model Role {
+  id       Int    @id @default(autoincrement())
+  roleName String
+  User     User[]
+}
+
+model Client {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  name      String
+  email     String
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  quotes    Quote[]
+}
+
+model Quote {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  clientId    Int
+  user        User      @relation(fields: [userId], references: [id])
+  client      Client    @relation(fields: [clientId], references: [id])
+  title       String
+  status      String    // Ex: "pending", "approved", "rejected"
+  totalAmount Float
+  currency    String    // Ex: "BRL", "USD"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  items       QuoteItem[]
+  payments    Payment[]
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  name        String
+  description String
+  unitPrice   Float
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  quoteItems  QuoteItem[]
+}
+
+model Template {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  name      String
+  content   String   // Armazene como JSON ou HTML
+  createdAt DateTime @default(now())
+}
+
+model Payment {
+  id            Int       @id @default(autoincrement())
+  quoteId       Int
+  quote         Quote     @relation(fields: [quoteId], references: [id])
+  paymentMethod String    // Ex: "credit_card", "PIX"
+  status        String    // Ex: "pending", "completed"
+  amountPaid    Float
+  transactionId String?
+  paidAt        DateTime?
+}
+
+model QuoteItem {
+  id        Int      @id @default(autoincrement())
+  quoteId   Int
+  quote     Quote    @relation(fields: [quoteId], references: [id])
+  itemId    Int
+  item      Item     @relation(fields: [itemId], references: [id])
+  quantity  Float
+  unitPrice Float
+}
