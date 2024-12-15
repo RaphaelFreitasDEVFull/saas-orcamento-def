@@ -11,7 +11,7 @@ interface deleteUserProps {
 }
 
 export const DeleteUserComponent = ({ id }: deleteUserProps) => {
-  const [state, formAction, isPending] = useActionState(
+  const [, formAction, isPending] = useActionState(
     () => deleteUser(id, null),
     null
   );
@@ -23,6 +23,7 @@ export const DeleteUserComponent = ({ id }: deleteUserProps) => {
         size="sm"
         className="text-red-600 hover:text-red-700"
         type="submit"
+        disabled={isPending}
       >
         <TrashIcon size={18} />
         <span>Excluir</span>

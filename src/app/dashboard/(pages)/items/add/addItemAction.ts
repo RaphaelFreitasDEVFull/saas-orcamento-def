@@ -4,7 +4,7 @@ import { db } from '@/lib/prisma';
 import { auth } from '../../../../../../auth';
 import { redirect } from 'next/navigation';
 
-export async function addItem(prevState: any, formData: FormData) {
+export async function addItem(prevState: unknown, formData: FormData) {
   const session = await auth();
 
   const name = formData.get('name');
@@ -19,7 +19,7 @@ export async function addItem(prevState: any, formData: FormData) {
     throw new Error('Preço unitário inválido');
   }
 
-  const item = await db.item.create({
+  await db.item.create({
     data: {
       name: name as string,
       description: (description as string) || '',

@@ -4,7 +4,13 @@ import { db } from '@/lib/prisma';
 import { hashSync } from 'bcrypt-ts';
 import { redirect } from 'next/navigation';
 
-export const addUser = async (_prevState: any, formData: FormData) => {
+interface UserData {
+  name: string;
+  email: string;
+  // adicione outros campos necessários
+}
+
+export async function addUser(_prevState: unknown, formData: FormData) {
   try {
     // Validação dos dados
     const name = formData.get('name');
@@ -28,7 +34,7 @@ export const addUser = async (_prevState: any, formData: FormData) => {
     }
 
     //cria o usuario
-    const newUser = await db.user.create({
+    await db.user.create({
       data: {
         name: name as string,
         userName: userName as string,
@@ -41,4 +47,4 @@ export const addUser = async (_prevState: any, formData: FormData) => {
   } catch (error: any) {
     return { error: error.message };
   }
-};
+}

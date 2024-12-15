@@ -1,6 +1,5 @@
 import { redirect } from 'next/navigation';
 import { auth } from '../../../../../auth';
-import { PencilIcon, PlusIcon, TrashIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -14,6 +13,7 @@ import { db } from '@/lib/prisma';
 
 import Link from 'next/link';
 import { DeleteUserComponent } from './delete';
+import { PlusIcon } from 'lucide-react';
 
 const UserPage = async () => {
   const session = await auth();

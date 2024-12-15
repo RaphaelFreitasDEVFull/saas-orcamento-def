@@ -1,7 +1,7 @@
 // src/components/PdfButton.tsx
 'use client';
 import { Button } from '@/components/ui/button';
-// @ts-expect-error
+// @ts-expect-error - HTML2Canvas types are incomplete for this usage
 import html2pdf from 'html2pdf.js';
 
 export function PdfButton() {

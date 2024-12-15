@@ -1,6 +1,5 @@
 import {
   BriefcaseIcon,
-  FileIcon,
   HomeIcon,
   ListIcon,
   PackageIcon,
