@@ -4,12 +4,6 @@ import { db } from '@/lib/prisma';
 import { hashSync } from 'bcrypt-ts';
 import { redirect } from 'next/navigation';
 
-interface UserData {
-  name: string;
-  email: string;
-  // adicione outros campos necessários
-}
-
 export async function addUser(_prevState: unknown, formData: FormData) {
   try {
     // Validação dos dados
@@ -44,7 +38,9 @@ export async function addUser(_prevState: unknown, formData: FormData) {
     });
 
     return redirect('/dashboard/user');
-  } catch (error: any) {
-    return { error: error.message };
+  } catch (error: unknown) {
+    return {
+      error: error instanceof Error ? error.message : 'Erro desconhecido',
+    };
   }
 }
