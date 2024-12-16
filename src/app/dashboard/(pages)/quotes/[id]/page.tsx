@@ -16,9 +16,14 @@ export default async function QuotePage({
   params: { id: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
+  const quoteId = parseInt(params.id, 10);
+  if (isNaN(quoteId)) {
+    return <div>ID inválido</div>;
+  }
+
   const quote = await db.quote.findUnique({
     where: {
-      id: Number(params.id),
+      id: Number(quoteId),
     },
     include: {
       client: true,
