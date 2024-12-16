@@ -16,7 +16,6 @@ export default async function QuotePage({
   params: { id: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-{
   const quote = await db.quote.findUnique({
     where: {
       id: Number(params.id),
