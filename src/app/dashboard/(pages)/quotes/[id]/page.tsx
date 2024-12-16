@@ -2,6 +2,7 @@ import { db } from '@/lib/prisma';
 import { auth } from '../../../../../../auth';
 import { redirect } from 'next/navigation';
 import { PdfButton } from '@/_components/PdfButton';
+import { Params } from 'next/dist/server/request/params';
 
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -13,7 +14,7 @@ const formatCurrency = (value: number) => {
 export default async function QuotePage({
   params,
 }: {
-  params: { id: string };
+  params: Params & { id: string };
 }) {
   const quote = await db.quote.findUnique({
     where: {
