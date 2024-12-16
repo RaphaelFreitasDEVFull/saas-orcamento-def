@@ -13,7 +13,10 @@ const formatCurrency = (value: number) => {
 export default async function QuotePage({
   params,
 }: {
-  params: { id: string };
+  params: {
+    id: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const quote = await db.quote.findUnique({
     where: {
