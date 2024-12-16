@@ -10,12 +10,13 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-type PageProps = {
-  params: { id: string };
+export default async function QuotePage({
+  params: paramsPromise,
+}: {
+  params: Promise<{ id: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
-};
-
-export default async function QuotePage({ params }: PageProps) {
+}) {
+  const params = await paramsPromise; // Resolva a Promise
   const quoteId = parseInt(params.id, 10);
   if (isNaN(quoteId)) {
     return <div>ID inválido</div>;
