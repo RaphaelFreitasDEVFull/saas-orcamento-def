@@ -12,15 +12,14 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-export default async function QuotePage({
-  params,
-}: {
-  params: { id: string };
+export default async function QuotePage(params: {
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params.params;
   try {
     const quote = await db.quote.findUnique({
       where: {
-        id: parseInt(params.id, 10),
+        id: parseInt(id, 10),
       },
       include: {
         client: true,
