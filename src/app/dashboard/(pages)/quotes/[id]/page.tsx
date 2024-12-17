@@ -11,8 +11,12 @@ const formatCurrency = (value: number) => {
 };
 
 interface PageProps {
-  params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: {
+    id: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
 }
 
 export default async function QuotePage({ params }: PageProps) {
