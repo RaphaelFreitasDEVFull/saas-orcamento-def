@@ -11,16 +11,16 @@ const formatCurrency = (value: number) => {
 };
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
   searchParams?: {
     [key: string]: string | string[] | undefined;
   };
 }
 
 export default async function QuotePage({ params }: PageProps) {
-  const quoteId = parseInt(params.id, 10);
+  const paramsPromise = await params;
+
+  const quoteId = parseInt(paramsPromise.id, 10);
   if (isNaN(quoteId)) {
     return <div>ID inválido</div>;
   }
