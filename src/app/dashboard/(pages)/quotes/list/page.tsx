@@ -8,8 +8,16 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { db } from '@/lib/prisma';
-import { EyeIcon } from 'lucide-react';
+import { Sheet } from '@/components/ui/sheet';
 import Link from 'next/link';
+import {
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+  SheetDescription,
+  SheetHeader,
+} from '@/components/ui/sheet';
+import { Eye } from 'lucide-react';
 
 export default async function QuotesListPage() {
   const quotes = await db.quote.findMany({
@@ -96,14 +104,9 @@ export default async function QuotesListPage() {
                   {quote.createdAt.toLocaleDateString()}
                 </TableCell>
                 <TableCell>
-                  <div className="flex items-center justify-center gap-2">
-                    <Link
-                      href={`/dashboard/quotes/${quote.id}`}
-                      className="p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-colors"
-                    >
-                      <EyeIcon className="w-4 h-4" />
-                    </Link>
-                  </div>
+                  <Link href={`/dashboard/quotes/${quote.id}`}>
+                    <Eye className="h-4 w-4" />
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}

@@ -1,3 +1,5 @@
+'use server';
+
 import { db } from '@/lib/prisma';
 import { auth } from '../../../../../../auth';
 import { redirect } from 'next/navigation';
@@ -10,25 +12,15 @@ const formatCurrency = (value: number) => {
   }).format(value);
 };
 
-interface PageProps {
-  params: Promise<{ id: string }>;
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
-}
-
-export default async function QuotePage({ params }: PageProps) {
+export default async function QuotePage({
+  params,
+}: {
+  params: { id: string };
+}) {
   try {
-    const paramsPromise = await params;
-
-    const quoteId = parseInt(paramsPromise.id, 10);
-    if (isNaN(quoteId)) {
-      return <div>ID inválido</div>;
-    }
-
     const quote = await db.quote.findUnique({
       where: {
-        id: quoteId,
+        id: parseInt(params.id, 10),
       },
       include: {
         client: true,
