@@ -12,7 +12,7 @@ interface DeleteClientProps {
 
 const DeleteClient = ({ id }: DeleteClientProps) => {
   const [, formAction, isPending] = useActionState(
-    () => deleteClient(id, null),
+    () => deleteClient(id),
     null
   );
 
