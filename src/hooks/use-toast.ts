@@ -22,24 +22,6 @@ function genId() {
   return count.toString();
 }
 
-type Action =
-  | {
-      type: ActionTypes['ADD_TOAST'];
-      toast: ToasterToast;
-    }
-  | {
-      type: ActionTypes['UPDATE_TOAST'];
-      toast: Partial<ToasterToast>;
-    }
-  | {
-      type: ActionTypes['DISMISS_TOAST'];
-      toastId?: ToasterToast['id'];
-    }
-  | {
-      type: ActionTypes['REMOVE_TOAST'];
-      toastId?: ToasterToast['id'];
-    };
-
 interface State {
   toasts: ToasterToast[];
 }
