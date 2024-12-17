@@ -12,10 +12,8 @@ const formatCurrency = (value: number) => {
 
 export default async function QuotePage({
   params,
-  searchParams,
 }: {
   params: { id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const quoteId = parseInt(params.id, 10);
   if (isNaN(quoteId)) {
