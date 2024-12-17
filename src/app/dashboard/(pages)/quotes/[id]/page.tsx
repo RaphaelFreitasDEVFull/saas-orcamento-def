@@ -23,7 +23,7 @@ export default async function QuotePage({ params }: PageProps) {
 
   const quote = await db.quote.findUnique({
     where: {
-      id: Number(quoteId),
+      id: quoteId,
     },
     include: {
       client: true,
