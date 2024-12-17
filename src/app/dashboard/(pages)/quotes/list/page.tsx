@@ -8,15 +8,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { db } from '@/lib/prisma';
-import { Sheet } from '@/components/ui/sheet';
 import Link from 'next/link';
-import {
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-  SheetDescription,
-  SheetHeader,
-} from '@/components/ui/sheet';
 import { Eye } from 'lucide-react';
 
 export default async function QuotesListPage() {
