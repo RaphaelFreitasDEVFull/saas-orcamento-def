@@ -11,8 +11,6 @@ import Link from 'next/link';
 import { auth } from '../../../../../auth';
 import DeleteClient from './add/_components/deleteClient';
 import { redirect } from 'next/navigation';
-import { Toast, ToastDescription, ToastTitle } from '@/components/ui/toast';
-import { useToast } from '@/hooks/use-toast';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const ClientsPage = async ({

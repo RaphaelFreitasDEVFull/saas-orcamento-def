@@ -2,11 +2,7 @@ import AddClientForm from './_components/addClientForm';
 import { redirect } from 'next/navigation';
 import { auth } from '../../../../../../auth';
 
-const AddClientPage = async ({
-  searchParams,
-}: {
-  searchParams: { success: string };
-}) => {
+const AddClientPage = async () => {
   const session = await auth();
 
   if (!session) {
