@@ -9,10 +9,16 @@ import {
 } from '@/components/ui/table';
 import { db } from '@/lib/prisma';
 import Link from 'next/link';
-import { Eye } from 'lucide-react';
+import { Eye, PlusIcon } from 'lucide-react';
+import { auth } from 'auth';
 
 export default async function QuotesListPage() {
+  const session = await auth();
+
   const quotes = await db.quote.findMany({
+    where: {
+      userId: Number(session?.user?.id),
+    },
     include: {
       client: true,
     },
@@ -77,15 +83,15 @@ export default async function QuotesListPage() {
                       quote.status === 'approved'
                         ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
                         : quote.status === 'rejected'
-                        ? 'bg-red-50 text-red-700 ring-1 ring-red-600/20'
-                        : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20'
+                          ? 'bg-red-50 text-red-700 ring-1 ring-red-600/20'
+                          : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20'
                     }`}
                   >
                     {quote.status === 'approved'
                       ? 'Aprovado'
                       : quote.status === 'rejected'
-                      ? 'Rejeitado'
-                      : 'Pendente'}
+                        ? 'Rejeitado'
+                        : 'Pendente'}
                   </span>
                 </TableCell>
                 <TableCell className="font-medium">
@@ -97,7 +103,7 @@ export default async function QuotesListPage() {
                 </TableCell>
                 <TableCell>
                   <Link href={`/dashboard/quotes/${quote.id}`}>
-                    <Eye className="h-4 w-4" />
+                    <PlusIcon className="h-4 w-4" />
                   </Link>
                 </TableCell>
               </TableRow>

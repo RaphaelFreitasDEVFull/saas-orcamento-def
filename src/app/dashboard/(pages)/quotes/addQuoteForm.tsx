@@ -267,9 +267,15 @@ export default function AddQuoteForm({ clients, items }: AddQuoteFormProps) {
             </div>
           </div>
 
-          <Button type="submit" disabled={isPending}>
-            Salvar Orçamento
-          </Button>
+          <div className="flex items-center justify-center w-full mt-6">
+            <Button
+              type="submit"
+              disabled={isPending}
+              className="w-fit flex  text-lg font-bold border border-blue-500 bg-blue-500 text-white hover:bg-blue-600 hover:border-blue-600 items-center justify-center"
+            >
+              Salvar Orçamento
+            </Button>
+          </div>
         </Form>
       </div>
     </div>

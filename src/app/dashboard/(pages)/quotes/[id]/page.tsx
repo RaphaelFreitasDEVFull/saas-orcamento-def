@@ -63,14 +63,19 @@ export default async function QuotePage(params: {
               <h2 className="text-xl font-semibold mb-2">
                 Status do Orçamento
               </h2>
+              <p>
+                {' '}
+                Data do Orçamento:{' '}
+                {new Date(quote.createdAt).toLocaleDateString()}
+              </p>
               <p className="text-gray-700">
                 Situação atual:
                 <span className="font-medium">
                   {quote.status === 'approved'
                     ? 'Aprovado'
                     : quote.status === 'rejected'
-                    ? 'Rejeitado'
-                    : 'Pendente'}
+                      ? 'Rejeitado'
+                      : 'Pendente'}
                 </span>
               </p>
             </div>

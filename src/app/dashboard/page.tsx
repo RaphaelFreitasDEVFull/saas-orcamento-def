@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { db } from '@/lib/prisma';
 import { auth } from '../../../auth';
+import Image from 'next/image';
 
 const DashboardHomePage = async () => {
   const session = await auth();
@@ -39,6 +40,13 @@ const DashboardHomePage = async () => {
           </CardContent>
         </Card>
       </div>
+      <Image
+        src={'/logo.png'}
+        alt="logo"
+        width={500}
+        height={500}
+        className="opacity-20"
+      />
     </div>
   );
 };
