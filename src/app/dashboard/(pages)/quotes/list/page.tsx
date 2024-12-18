@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/table';
 import { db } from '@/lib/prisma';
 import Link from 'next/link';
-import { Eye, PlusIcon } from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 import { auth } from 'auth';
 
 export default async function QuotesListPage() {
@@ -83,15 +83,15 @@ export default async function QuotesListPage() {
                       quote.status === 'approved'
                         ? 'bg-green-50 text-green-700 ring-1 ring-green-600/20'
                         : quote.status === 'rejected'
-                          ? 'bg-red-50 text-red-700 ring-1 ring-red-600/20'
-                          : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20'
+                        ? 'bg-red-50 text-red-700 ring-1 ring-red-600/20'
+                        : 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20'
                     }`}
                   >
                     {quote.status === 'approved'
                       ? 'Aprovado'
                       : quote.status === 'rejected'
-                        ? 'Rejeitado'
-                        : 'Pendente'}
+                      ? 'Rejeitado'
+                      : 'Pendente'}
                   </span>
                 </TableCell>
                 <TableCell className="font-medium">
