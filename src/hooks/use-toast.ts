@@ -15,15 +15,13 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement;
 };
 
-// Replace the actionTypes object with a type
-
-// Use const assertion for the actual values if needed
-const ACTION_TYPES = {
-  ADD_TOAST: 'ADD_TOAST',
-  UPDATE_TOAST: 'UPDATE_TOAST',
-  DISMISS_TOAST: 'DISMISS_TOAST',
-  REMOVE_TOAST: 'REMOVE_TOAST',
-} as const;
+// Replace the ACTION_TYPES const with a type
+type ActionType = {
+  ADD_TOAST: 'ADD_TOAST';
+  UPDATE_TOAST: 'UPDATE_TOAST';
+  DISMISS_TOAST: 'DISMISS_TOAST';
+  REMOVE_TOAST: 'REMOVE_TOAST';
+};
 
 let count = 0;
 
@@ -32,21 +30,22 @@ function genId() {
   return count.toString();
 }
 
+// Update the Action type to use the new ActionType
 type Action =
   | {
-      type: (typeof ACTION_TYPES)['ADD_TOAST'];
+      type: ActionType['ADD_TOAST'];
       toast: ToasterToast;
     }
   | {
-      type: (typeof ACTION_TYPES)['UPDATE_TOAST'];
+      type: ActionType['UPDATE_TOAST'];
       toast: Partial<ToasterToast>;
     }
   | {
-      type: (typeof ACTION_TYPES)['DISMISS_TOAST'];
+      type: ActionType['DISMISS_TOAST'];
       toastId?: ToasterToast['id'];
     }
   | {
-      type: (typeof ACTION_TYPES)['REMOVE_TOAST'];
+      type: ActionType['REMOVE_TOAST'];
       toastId?: ToasterToast['id'];
     };
 
