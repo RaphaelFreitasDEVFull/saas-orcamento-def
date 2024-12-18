@@ -11,8 +11,15 @@ import Link from 'next/link';
 import { auth } from '../../../../../auth';
 import DeleteClient from './add/_components/deleteClient';
 import { redirect } from 'next/navigation';
+import { Toast, ToastDescription, ToastTitle } from '@/components/ui/toast';
+import { useToast } from '@/hooks/use-toast';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
-const ClientsPage = async () => {
+const ClientsPage = async ({
+  searchParams,
+}: {
+  searchParams: { success: string };
+}) => {
   const session = await auth();
 
   if (!session) {
@@ -64,6 +71,15 @@ const ClientsPage = async () => {
           </Table>
         </div>
       </div>
+      {searchParams.success && (
+        <Alert
+          variant="default"
+          className="mt-4 w-full self-center *:first-letter:capitalize *:text-center"
+        >
+          <AlertTitle>Sucesso!</AlertTitle>
+          <AlertDescription>Cliente adicionado com sucesso!</AlertDescription>
+        </Alert>
+      )}
     </div>
   );
 };

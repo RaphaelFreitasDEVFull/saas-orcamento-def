@@ -25,5 +25,5 @@ export async function addClient(prevState: unknown, formData: FormData) {
     },
   });
 
-  redirect('/dashboard/clients');
+  redirect('/dashboard/clients?success=true');
 }
