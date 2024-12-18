@@ -12,7 +12,7 @@ interface deleteUserProps {
 
 export const DeleteUserComponent = ({ id }: deleteUserProps) => {
   const [, formAction, isPending] = useActionState(
-    () => deleteRole(id, null),
+    () => deleteRole(id, ''),
     null
   );
 
